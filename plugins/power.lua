@@ -13,7 +13,7 @@ local GetColor = Engine.GetColor
 
 --
 local plugin = Engine:NewPlugin("POWER")
-
+--print(tostring(UnitPower("player", self.settings.powerType)))
 -- own methods
 function plugin:UpdateVisibility(event)
 	--

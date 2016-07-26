@@ -19,6 +19,7 @@ L.classmonitor_greetingwithconfig = "ClassMonitor当前版本号为%s，ClassMon
 L.classmonitor_greetingnoconfig = "ClassMonitor当前版本号为%s"
 
 L.classmonitor_MANABAR = "法力条"
+L.classmonitor_ARCANE = "奥冲层数"
 L.classmonitor_RESOURCEBAR = "资源条"
 L.classmonitor_COMBOPOINTS = "连击点"
 L.classmonitor_DRUID_ECLIPSEBAR = "月蚀条"
