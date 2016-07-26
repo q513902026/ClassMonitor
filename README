@@ -1,3 +1,4 @@
+# ClassMonitor
 Monitor class resources such as combo points, energy, runes, soul shards, mana, eclipse, mana tea. 
 This version is compatible with standard Blizzard UI, Tukui and ElvUI. This replaced old versions Tukui_ClassMonitor and Tukui_ElvUI_ClassMonitor 
 
@@ -8,35 +9,34 @@ If you see blurry borders on top/bottom of bars, try with multisampling set to 1
 
 You can still modify your config by creating a new file profiles.lua in /ClassMonitor/config/ but it will be lost each time you perform an update of the addon. 
 
-Default configuration by class: 
-Druid: mana/rage/energy, combo, eclipse, mushrooms 
-Paladin: mana, holy power, sacred shield 
-Warlock: mana, soul shards, burning embers, demonic fury 
-Rogue: energy, combo, anticipation, bandit's guile 
-Priest: mana, shadow orbs, rapture ICD 
-Mage: mana, arcane blast, ignite, combustion 
-DK: runic power, runes, shadow infusion, bone shield, blood shield 
-Hunter: focus, pet's frenzy 
-Warrior: rage, shield barrier 
-Shaman: mana, fulmination, maelstrom, totems 
-Monk: mana/energy, chi, mana tea, elusive brew, tigereye brew, stagger, guard 
+### Default functions by class:
+* _Druid: mana/rage/energy, combo, eclipse, mushrooms_ 
+* Paladin: mana, holy power, ~~sacred shield~~
+* Warlock: mana, soul shards, ~~burning embers, demonic fury~~
+* Rogue: energy, combo, ~~anticipation, bandit's guile~~ 
+* _Priest: mana, shadow orbs, rapture ICD_ 
+* Mage: mana, arcane blast, ~~ignite, combustion~~ 
+* _DK: runic power, runes, shadow infusion, bone shield, blood shield_ 
+* _Hunter: mana, focus, pet's frenzy_ 
+* Warrior: rage, shield barrier 
+* Shaman: power, ~~fulmination, maelstrom, totems~~ 
+* Monk: mana/energy, chi, ~~mana tea, elusive brew, tigereye brew~~, stagger, ~~guard~~ 
+
+p.s. italics means those functions have not tested
 
 Additional plugin (must be added in config.lua or with config UI): 
 Health, CD, Recharge (points and bar CD with charge like monk's roll) , Aura (points and bar check buff or debuff) 
 
 This addon is based on sCombo by Smelly and Hydra. It has been totally rewritten and many new features have been added. Ildyria also wrote some plugins. 
-
-
-***********************************************************************************
-***********************************************************************************
-***********************************************************************************
+******
+## Add new plugin
 New plugin can be added to ClassMonitor using ClassMonitor:NewPlugin  (see public.lua)
 You can also add your plugin options definition using ClassMonitor_ConfigUI:NewPluginDefinition
 
 A full sample is provided in ClassMonitor\test\ClassMonitor_TestPlugins
 
-Hello World sample:
--------------------
+### Hello World sample:
+```
 local ADDON_NAME, Engine = ...
 
 local ClassMonitor = ClassMonitor
@@ -118,8 +118,10 @@ function HelloWorldPlugin:UpdateValue()
 	self.bar.leftText:SetText(">")
 	self.bar.rightText:SetText("<")
 end
+```
 
--- OPTION DEFINITION
+### OPTION DEFINITION
+```
 if ClassMonitor_ConfigUI then
 --print("CREATE pluginCastBar DEFINITION")
 	local Helpers = ClassMonitor_ConfigUI.Helpers
@@ -151,3 +153,4 @@ if ClassMonitor_ConfigUI then
 
 	ClassMonitor_ConfigUI:NewPluginDefinition(HelloWorldPluginName, HelloWorldPluginOptions, HelloWorldPluginShortDescription, HelloWorldPluginLongDescription) -- add plugin definition in ClassMonitor_ConfigUI
 end
+```
