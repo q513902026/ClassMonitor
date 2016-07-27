@@ -1,3 +1,6 @@
+* 3.4.4.3
+	1. fix issus when using without tukui and elvui
+
 * 3.4.4.2
     1. update plugin/rune.lua, now can work
     2. delete burningembers, demonicfury, eclipse plugins

@@ -23,9 +23,9 @@ local texture = blank
 local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = 0, 0, 0, 1, 0, 0, 0
 
 --local mult = 1
-local resolution = GetCVar("gxResolution")
+local resolution = GetCVar("gxWindowedResolution")
 local uiscale = min(2, max(.64, 768/string.match(resolution, "%d+x(%d+)")))
-local mult = 768 / string.match(GetCVar("gxResolution"), "%d+x(%d+)") / uiscale
+local mult = 768 / string.match(GetCVar("gxWindowedResolution"), "%d+x(%d+)") / uiscale
 --print(tostring(mult).."  "..tostring(resolution).."  "..tostring(uiscale))
 local function Scale(x)
 	return mult*math.floor(x/mult+.5)
