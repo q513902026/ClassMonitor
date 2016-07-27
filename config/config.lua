@@ -12,12 +12,14 @@ Engine.Config = {
 	verticalIndex = number (-20->20)	[default:0]					in automatic anchor mode, these indices are used to order frames vertically (frame with index 0 (or lowest positive or highest negative) is anchored on mover)
 	horizontalIndex = number (0->9)		[default:0]					in autoanchor mode, if 2 frames have similar verticalIndex, these indices are used to order frames horizontally (if both horizontal and vertical are identical, frames are overlapped)
 
-	MOVER	create a mover in Tukui/ElvUI to be able to move bars via /moveui
+	MOVER	create a mover in Tukui/ElvUI to be able to move bars via /moveui 
+	主框体
 	text = string													text to display in config mode
 	width = number													width of anchor bar
 	height = number													height of anchor bar
 
 	RESOURCE (mana/runic power/energy/focus/rage/chi):
+	主资源
 	text = true|false												display resource value (% for mana) [default: true]
 	autohide = true|false											hide or not while out of combat [default: false]
 	hideifmax = true|false											hide when current value = max value [default: false]
@@ -28,6 +30,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	COMBO:
+	连击点
 	autohide = true|false											hide or not while out of combat [default: true]
 	anchor =														see note below
 	width = number													bar total width (combo * count + spacing * count-1)
@@ -37,6 +40,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	POWER (holy power/soul shard/light force, ...):
+	职业特殊能量
 	autohide = true|false											hide or not while out of combat [default: false]
 	powerType = SPELL_POWER_HOLY_POWER|SPELL_POWER_SOUL_SHARDS|SPELL_POWER_LIGHT_FORCE|SPELL_POWER_SHADOW_ORBS	power to monitor (can be any power type (http://www.wowwiki.com/PowerType) for SPELL_POWER_BURNING_EMBERS|SPELL_POWER_DEMONIC_FURY, use specific plugin
 	count = number													max number of points to display
@@ -50,6 +54,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	AURA (buff/debuff):
+	光环
 	autohide = true|false											hide or not while out of combat [default: true]
 	unit = "player"|"target"|"focus"|"pet"							check aura on this unit [default:"player"]
 	spellID = number												spell id of buff/debuff to monitor
@@ -64,6 +69,7 @@ Engine.Config = {
 	filled = true|false												is buff stack filled or not if no bar[default: false]
 
 	AURABAR (buff/debuff):
+	光环-计时条样式
 	autohide = true|false											hide or not while out of combat [default: true]
 	unit = "player"|"target"|"focus"|"pet"							check aura on this unit [default:"player"]
 	spellID = number												spell id of buff/debuff to monitor
@@ -78,6 +84,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	RUNES
+	DK-符文
 	updatethreshold = number										interval between runes display update [default: 0.1]
 	autohide = true|false											hide or not while out of combat [default: false]
 	orientation = "HORIZONTAL" | "VERTICAL"							direction of rune filling display [default: HORIZONTAL]
@@ -90,6 +97,7 @@ Engine.Config = {
 	runemap = { 1, 2, 3, 4, 5, 6 }									see instruction in DEATHKNIGHT section
 
 	ECLIPSE
+	日月食-已删除
 	autohide = true|false											hide or not while out of combat [default: false]
 	text = true|false												display eclipse direction [default: true]
 	anchor=															see note below
@@ -98,6 +106,7 @@ Engine.Config = {
 	colors = { lunar, solar }										color of lunar and solar bar
 
 	ENERGIZE
+	内置CD
 	anchor = 														see note below
 	text = true|false												display energize value (% for mana) [default: true]
 	autohide = true|false											hide or not while out of combat [default: false]
@@ -106,6 +115,7 @@ Engine.Config = {
 	color =															see note below [default: class color]
 
 	HEALTH
+	血量
 	unit = "player"|"target"|"focus"|"pet"							check aura on this unit [default:"player"]
 	anchor = 														see note below
 	autohide = true|false											hide or not while out of combat [default: true]
@@ -114,6 +124,7 @@ Engine.Config = {
 	color =															see note below [default: class color]
 	specs = 														see note below [default: any]
 
+	DOT
 	DOT
 	autohide = true|false											hide or not while out of combat [default: true]
 	anchor = 														see note below
@@ -132,6 +143,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	TOTEMS (totems or wildmushrooms):
+	仆从生物（图腾，蘑菇）
 	autohide = true|false											hide or not while out of combat [default: false]
 	anchor = 														see note below
 	--width = number													width of totem bar [default: 85]
@@ -146,6 +158,7 @@ Engine.Config = {
 		example: { 2, 1, 3, 4 }										display second totem, followed by first totem, then third and fourth
 
 	BANDITSGUILE:
+	dz-盗匪之诈-已删除
 	autohide = true|false											hide or not while out of combat [default: true]
 	anchor =														see note below
 	--width = number													width of bandit's guilde charge [default: 85]
@@ -156,6 +169,7 @@ Engine.Config = {
 	filled = true|false												is bandit's guilde charge filled or not [default: false]
 
 	STAGGER
+	monk-醉拳
 	autohide = true|false											hide or not while out of combat [default: true]
 	anchor =														see note below
 	width = number													width of stagger bar [default: 85]
@@ -165,6 +179,7 @@ Engine.Config = {
 	threshold = number (%)											above this value, bar state is meaningless, below this value, bar state is meaningful [default: 100]
 
 	TANKSHIELD (Warrior: Shield Barrier, Monk: Guard, Deathknight: Blood Shield, Paladin: Sacred Shield):
+	吸收盾
 	autohide = true|false											hide or not while out of combat [default: true]
 	anchor =														see note below
 	width = number													width of bar[default: 85]
@@ -174,6 +189,7 @@ Engine.Config = {
 	specs = 														see note below [default: any]
 
 	BURNINGEMBERS:
+	余烬-已删除
 	autohide = true|false											hide or not while out of combat [default: false]
 	anchor =														see note below
 	--width = number													width of power point [default: 85]
@@ -184,6 +200,7 @@ Engine.Config = {
 	filled = true|false												is power point filled or not [default: false]
 
 	DEMONICFURY:
+	恶魔能量-已删除
 	autohide = true|false											hide or not while out of combat [default: false]
 	anchor =														see note below
 	--width = number													width of power point [default: 85]
@@ -246,34 +263,34 @@ Engine.Config = {
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
-		{ -- 4
-			name = "CM_ECLIPSE",
-			displayName = L.classmonitor_DRUID_ECLIPSEBAR,
-			kind = "ECLIPSE",
-			anchor = { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
-			width = 262,
-			height = 16,
-			text = true,
-			colors = {
-				{0.50, 0.52, 0.70, 1}, -- Lunar
-				{0.80, 0.82, 0.60, 1}, -- Solar
-			},
-			verticalIndex = -1,
-			horizontalIndex = 0,
-		},
-		{ -- 5
-			name = "CM_WILDMUSHROOMS",
-			displayName = L.classmonitor_DRUID_WILDMUSHROOMS,
-			kind = "TOTEMS",
-			count = 3,
-			specs = {1, 4},
-			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
-			width = 262,
-			height = 16,
-			--spacing = 3,
-			color = { 95/255, 222/255,  95/255, 1 },
-			verticalIndex = 1
-		},
+		-- { -- 4
+			-- name = "CM_ECLIPSE",
+			-- displayName = L.classmonitor_DRUID_ECLIPSEBAR,
+			-- kind = "ECLIPSE",
+			-- anchor = { "BOTTOMLEFT", "CM_RESOURCE", "TOPLEFT", 0, 3 },
+			-- width = 262,
+			-- height = 16,
+			-- text = true,
+			-- colors = {
+				-- {0.50, 0.52, 0.70, 1}, -- Lunar
+				-- {0.80, 0.82, 0.60, 1}, -- Solar
+			-- },
+			-- verticalIndex = -1,
+			-- horizontalIndex = 0,
+		-- },
+		-- { -- 5
+			-- name = "CM_WILDMUSHROOMS",
+			-- displayName = L.classmonitor_DRUID_WILDMUSHROOMS,
+			-- kind = "TOTEMS",
+			-- count = 3,
+			-- specs = {1, 4},
+			-- anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+			-- width = 262,
+			-- height = 16,
+			-- --spacing = 3,
+			-- color = { 95/255, 222/255,  95/255, 1 },
+			-- verticalIndex = 1
+		-- },
 	},
 	["PALADIN"] = {
 		{
@@ -498,36 +515,36 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
-		{
-			name = "CM_SHADOW_ORBS",
-			displayName = L.classmonitor_PRIEST_SHADOWORBS,
-			kind = "POWER",
-			specs = {3}, -- Shadow
-			powerType = SPELL_POWER_SHADOW_ORBS,
-			count = 3,
-			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
-			width = 262,
-			height = 16,
-			spacing = 3,
-			--color = {0.5, 0, 0.7, 1},
-			filled = false,
-			verticalIndex = -1,
-			horizontalIndex = 0,
-		},
-		{
-			name = "CM_RAPTURE",
-			displayName = L.classmonitor_PRIEST_RAPTUREICD,
-			kind = "ENERGIZE",
-			specs = {1}, -- Discipline
-			spellID = 47755, -- Rapture
-			anchor = { "TOPLEFT", "CM_MANA", "BOTTOMLEFT", 0, -2 },
-			width = 262,
-			height = 16,
-			filling = true,
-			duration = 12,
-			verticalIndex = 1,
-			horizontalIndex = 0,
-		},
+		-- {
+			-- name = "CM_SHADOW_ORBS",
+			-- displayName = L.classmonitor_PRIEST_SHADOWORBS,
+			-- kind = "POWER",
+			-- specs = {3}, -- Shadow
+			-- powerType = SPELL_POWER_SHADOW_ORBS,
+			-- count = 3,
+			-- anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
+			-- width = 262,
+			-- height = 16,
+			-- spacing = 3,
+			-- --color = {0.5, 0, 0.7, 1},
+			-- filled = false,
+			-- verticalIndex = -1,
+			-- horizontalIndex = 0,
+		-- },
+		-- {
+			-- name = "CM_RAPTURE",
+			-- displayName = L.classmonitor_PRIEST_RAPTUREICD,
+			-- kind = "ENERGIZE",
+			-- specs = {1}, -- Discipline
+			-- spellID = 47755, -- Rapture
+			-- anchor = { "TOPLEFT", "CM_MANA", "BOTTOMLEFT", 0, -2 },
+			-- width = 262,
+			-- height = 16,
+			-- filling = true,
+			-- duration = 12,
+			-- verticalIndex = 1,
+			-- horizontalIndex = 0,
+		-- },
 	},
 	["MAGE"] = {
 		{
@@ -658,39 +675,31 @@ Engine.Config = {
 			width = 262,
 			height = 16,
 			--spacing = 3,
-			colors = {
-				{ 0.69, 0.31, 0.31, 1 }, -- Blood
-				{ 0.33, 0.59, 0.33, 1 }, -- Unholy
-				{ 0.31, 0.45, 0.63, 1 }, -- Frost
-				{ 0.84, 0.75, 0.65, 1 }, -- Death
-			},
-			-- runemap instructions.
-			-- This is the order you want your runes to be displayed in (down to bottom or left to right).
-			-- 1,2 = Blood
-			-- 3,4 = Unholy
-			-- 5,6 = Frost
-			-- (Note: All numbers must be included or it will break)
-			runemap = { 1, 2, 3, 4, 5, 6 },
+			-- colors = {
+				-- { 0.69, 0.31, 0.31, 1 }, -- Blood
+				-- { 0.31, 0.45, 0.63, 1 }, -- Frost
+				-- { 0.33, 0.59, 0.33, 1 }, -- Unholy
+			-- },
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
-		{
-			name = "CM_SHADOW_INFUSION",
-			displayName = L.classmonitor_DEATHKNIGHT_SHADOWINFUSION,
-			kind = "AURA",
-			specs = {3},
-			spellID = 91342, -- Shadow infusion
-			filter = "HELPFUL",
-			count = 5,
-			anchor = { "TOPLEFT", "CM_RUNIC_POWER", "BOTTOMLEFT", 0, -3 },
-			width = 262,
-			height = 16,
-			--spacing = 4,
-			color = { 0.33, 0.59, 0.33, 1 },
-			filled = true,
-			verticalIndex = 1,
-			horizontalIndex = 0,
-		},
+		-- {
+			-- name = "CM_SHADOW_INFUSION",
+			-- displayName = L.classmonitor_DEATHKNIGHT_SHADOWINFUSION,
+			-- kind = "AURA",
+			-- specs = {3},
+			-- spellID = 91342, -- Shadow infusion
+			-- filter = "HELPFUL",
+			-- count = 5,
+			-- anchor = { "TOPLEFT", "CM_RUNIC_POWER", "BOTTOMLEFT", 0, -3 },
+			-- width = 262,
+			-- height = 16,
+			-- --spacing = 4,
+			-- color = { 0.33, 0.59, 0.33, 1 },
+			-- filled = true,
+			-- verticalIndex = 1,
+			-- horizontalIndex = 0,
+		-- },
 		{
 			name = "CM_BLOODSHIELD",
 			displayName = L.classmonitor_DEATHKNIGHT_BLOODSHIELD,
@@ -703,23 +712,23 @@ Engine.Config = {
 			verticalIndex = 1,
 			horizontalIndex = 0,
 		},
-		{
-			name = "CM_BONESHIELD",
-			displayName = L.classmonitor_DEATHKNIGHT_BONESHIELD,
-			kind = "AURA",
-			specs = {1},
-			spellID = 49222, -- Bone shield
-			filter = "HELPFUL",
-			count = 6,
-			anchor = { "BOTTOMLEFT", "CM_RUNES", "TOPLEFT", 0, 3 },
-			width = 262,
-			height = 16,
-			--spacing = 3,
-			color = { 0.33, 0.59, 0.33, 1 },
-			filled = true,
-			verticalIndex = -2,
-			horizontalIndex = 0,
-		},
+		-- {
+			-- name = "CM_BONESHIELD",
+			-- displayName = L.classmonitor_DEATHKNIGHT_BONESHIELD,
+			-- kind = "AURA",
+			-- specs = {1},
+			-- spellID = 49222, -- Bone shield
+			-- filter = "HELPFUL",
+			-- count = 6,
+			-- anchor = { "BOTTOMLEFT", "CM_RUNES", "TOPLEFT", 0, 3 },
+			-- width = 262,
+			-- height = 16,
+			-- --spacing = 3,
+			-- color = { 0.33, 0.59, 0.33, 1 },
+			-- filled = true,
+			-- verticalIndex = -2,
+			-- horizontalIndex = 0,
+		-- },
 	},
 	["HUNTER"] = {
 		{
@@ -743,24 +752,24 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
-		{
-			name = "CM_FRENZY",
-			displayName = L.classmonitor_HUNTER_PETFRENZY,
-			unit = "pet",
-			kind = "AURA",
-			specs = {1}, -- Beast mastery
-			spellID = 19615, -- Frenzy
-			filter = "HELPFUL",
-			count = 5,
-			anchor = { "TOPLEFT", "CM_FOCUS", "BOTTOMLEFT", 0, -3 },
-			width = 262,
-			height = 16,
-			--spacing = 3,
-			--color = { 0.59, 0.63, 0.1, 1},
-			filled = true,
-			verticalIndex = 1,
-			horizontalIndex = 0,
-		},
+		-- {
+			-- name = "CM_FRENZY",
+			-- displayName = L.classmonitor_HUNTER_PETFRENZY,
+			-- unit = "pet",
+			-- kind = "AURA",
+			-- specs = {1}, -- Beast mastery
+			-- spellID = 19615, -- Frenzy
+			-- filter = "HELPFUL",
+			-- count = 5,
+			-- anchor = { "TOPLEFT", "CM_FOCUS", "BOTTOMLEFT", 0, -3 },
+			-- width = 262,
+			-- height = 16,
+			-- --spacing = 3,
+			-- --color = { 0.59, 0.63, 0.1, 1},
+			-- filled = true,
+			-- verticalIndex = 1,
+			-- horizontalIndex = 0,
+		-- },
 	},
 	["WARRIOR"] = {
 		{
