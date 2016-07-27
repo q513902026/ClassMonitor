@@ -1,3 +1,8 @@
+* 3.4.4.2
+    1. update plugin/rune.lua, now can work
+    2. delete burningembers, demonicfury, eclipse plugins
+    3. fix display of dk, druid, rogue, priest
+
 * 3.4.4
     1. update plugin/tankshield.lua, remine `Paon ignore` and `Blood Shield`
     2. update plugin/combo.lua, now can work in 7.0.0
