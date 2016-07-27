@@ -10,19 +10,17 @@ If you see blurry borders on top/bottom of bars, try with multisampling set to 1
 You can still modify your config by creating a new file profiles.lua in /ClassMonitor/config/ but it will be lost each time you perform an update of the addon. 
 
 ### Default functions by class:
-* _Druid: mana/rage/energy, combo, eclipse, mushrooms_ 
+* Druid: mana/rage/energy, combo, ~~eclipse, mushrooms~~
 * Paladin: mana, holy power, ~~sacred shield~~
 * Warlock: mana, soul shards, ~~burning embers, demonic fury~~
 * Rogue: energy, combo, ~~anticipation, bandit's guile~~ 
-* _Priest: mana, shadow orbs, rapture ICD_ 
+* Priest: mana, shadow orbs, ~~rapture ICD~~
 * Mage: mana, arcane blast, ~~ignite, combustion~~ 
-* _DK: runic power, runes, shadow infusion, bone shield, blood shield_ 
-* _Hunter: mana, focus, pet's frenzy_ 
+* DK: runic power, runes, ~~shadow infusion, bone shield~~, blood shield
+* Hunter: mana, focus, ~~pet's frenzy~~
 * Warrior: rage, shield barrier 
 * Shaman: power, ~~fulmination, maelstrom, totems~~ 
 * Monk: mana/energy, chi, ~~mana tea, elusive brew, tigereye brew~~, stagger, ~~guard~~ 
-
-p.s. italics means those functions have not tested
 
 Additional plugin (must be added in config.lua or with config UI): 
 Health, CD, Recharge (points and bar CD with charge like monk's roll) , Aura (points and bar check buff or debuff) 
