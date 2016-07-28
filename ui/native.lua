@@ -171,9 +171,9 @@ end
 
 UI.HealthColor = function(unit)
 	local color = {1, 1, 1, 1}
-	if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-		color = UnitTappedColor
-	elseif not UnitIsConnected(unit) then
+	--if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+		--color = UnitTappedColor
+	if not UnitIsConnected(unit) then
 		color = UnitDisconnectedColor
 	elseif UnitIsPlayer(unit) or (UnitPlayerControlled(unit) and not UnitIsPlayer(unit)) then
 		local class = select(2, UnitClass(unit)) or UI.MyClass

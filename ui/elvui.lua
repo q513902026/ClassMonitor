@@ -85,9 +85,9 @@ end
 
 UI.HealthColor = function(unit)
 	local color = {1, 1, 1, 1}
-	if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-		color = UF.db.colors.tapped
-	elseif not UnitIsConnected(unit) then
+	-- if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+		-- color = UF.db.colors.tapped
+	if not UnitIsConnected(unit) then
 		color = UF.db.colors.disconnected
 	elseif UnitIsPlayer(unit) or (UnitPlayerControlled(unit) and not UnitIsPlayer(unit)) then
 		local class = select(2, UnitClass(unit)) or E.MyClass

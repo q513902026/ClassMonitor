@@ -1,8 +1,14 @@
+* 3.4.6
+	1. fix HealthBar function 
+
+* 3.4.5
+    1. fix `/clm config` module
+
 * 3.4.4.4
-	1. fix `/clm move` with tukui
+    1. fix `/clm move` with tukui
 
 * 3.4.4.3
-	1. fix issus when using without tukui and elvui
+    1. fix issus when using without tukui and elvui
 
 * 3.4.4.2
     1. update plugin/rune.lua, now can work

@@ -14,8 +14,8 @@ Engine.Enabled = true -- Tukui found
 local T, C, _ = unpack(Tukui)
 
 
-UI.BorderColor = C["General"]["BorderColor"]
-UI.NormTex = C["UnitFrames"].CastTexture
+UI.BorderColor = C["Medias"]["BorderColor"]
+UI.NormTex = C["Medias"]["Normal"]
 UI.MyClass = T.MyClass
 UI.MyName = T.MyName
 UI.Colors = T["Colors"]
@@ -40,20 +40,21 @@ UI.ClassColor = function(className)
 end
 
 UI.PowerColor = function(resourceName)
+--print(tostring(resourceName).."  "..tostring(UI.Colors.power[resourceName]))
 	return UI.Colors.power[resourceName]
 end
 
 UI.HealthColor = function(unit)
 	local color = {1, 1, 1, 1}
-	if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
-		color = T.UnitColor.tapped
-	elseif not UnitIsConnected(unit) then
-		color = T.UnitColor.disconnected
+	-- if UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) then
+		-- color = T.UnitColor.tapped
+	if not UnitIsConnected(unit) then
+		color = UI.Colors.disconnected
 	elseif UnitIsPlayer(unit) or (UnitPlayerControlled(unit) and not UnitIsPlayer(unit)) then
 		local class = select(2, UnitClass(unit))
-		color = T.UnitColor.class[class]
+		color = UI.Colors.class[class]
 	elseif UnitReaction(unit, "player") then
-		color = T.UnitColor.reaction[UnitReaction(unit, "player")]
+		color = UI.Colors.reaction[UnitReaction(unit, "player")]
 	end
 	return color
 end
