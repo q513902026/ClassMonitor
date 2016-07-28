@@ -1,3 +1,6 @@
+* 3.4.4.4
+	1. fix `/clm move` with tukui
+
 * 3.4.4.3
 	1. fix issus when using without tukui and elvui
 
