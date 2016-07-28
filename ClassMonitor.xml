@@ -20,7 +20,6 @@
 
 	<Script file="plugin.lua"/>
 
-	<Script file="plugins\arcane.lua"/>
 	<Script file="plugins\aura.lua"/>
 	<Script file="plugins\aurabar.lua"/>
 	<Script file="plugins\power.lua"/>
