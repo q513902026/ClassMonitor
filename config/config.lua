@@ -389,7 +389,7 @@ Engine.Config = {
 				-- {0.46, 0.63, 0.35, 1}, -- 4
 				-- {0.33, 0.63, 0.33, 1}, -- 5
 			-- },
-			filled = false,
+			filled = true,
 			autohide = false,
 			verticalIndex = -1,
 			horizontalIndex = 0,

@@ -91,7 +91,8 @@ function plugin:UpdateGraphics()
 			point.status:SetInside()
 		end
 --		local color = GetColor(self.settings.colors, i, DefaultColors[i])
-		local color = ColorPercent(DefaultColors[1], DefaultColors[1], i, self.count)
+		local color = ColorPercent(DefaultColors[1], DefaultColors[5], i, self.count)
+--		print("color: "..unpack(color))
 		if self.settings.filled == true then
 			point.status:SetStatusBarColor(unpack(color))
 			point.status:Show()

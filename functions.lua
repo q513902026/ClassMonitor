@@ -63,7 +63,8 @@ Engine.ColorPercent = function(color_begin, color_end, percent_or_index, count)
     local color = {}
     for i=1, #color_begin do
         color[i] = color_begin[i]+(color_end[i]-color_begin[i])*percent
-    end
+	end
+--	print(unpack(color))
     return color
 end
 
