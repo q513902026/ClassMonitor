@@ -37,6 +37,7 @@ Engine.Config = {
 	height = number													height of combo point [default: 16]
 	color|colors =													see note below [default: class color]
 	filled = true|false												is combo point filled or not [default: false]
+	smooth = true|false                                             color smoothly with count [default: false]
 	specs = 														see note below [default: any]
 
 	POWER (holy power/soul shard/light force, ...):
