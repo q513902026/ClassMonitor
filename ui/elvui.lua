@@ -34,6 +34,9 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	return fs
 end
 
+UI.PopupDialogs = E.PopupDialogs
+UI.StaticPopup_Show = E:StaticPopup_Show
+
 -- local function ConvertColor(color)
 	-- return { color.r, color.g, color.b, color.a or 1 }
 -- end
