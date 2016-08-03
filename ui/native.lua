@@ -160,6 +160,9 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	return fs
 end
 
+UI.PopupDialogs = StaticPopupDialogs
+UI.StaticPopup_Show = StaticPopup_Show
+
 UI.ClassColor = function(className)
 	local class = className or UI.MyClass
 	return {RAID_CLASS_COLORS[class].r, RAID_CLASS_COLORS[class].g, RAID_CLASS_COLORS[class].b}

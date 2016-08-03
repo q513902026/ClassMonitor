@@ -35,6 +35,9 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	return fs
 end
 
+UI.Popups = T["Popups"]
+UI.StaticPopup_Show = UI.Popups.ShowPopup
+
 UI.ClassColor = function(className)
 	return className and UI.Colors.class[className] or UI.Colors.class[UI.MyClass]
 end

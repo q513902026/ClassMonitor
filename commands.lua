@@ -44,18 +44,36 @@ local function Reset()
 	-- reload
 	ReloadUI()
 end
-StaticPopupDialogs["CLASSMONITOR_RESET"] = {
-	text = L.classmonitor_command_reset,
-	button1 = ACCEPT,
-	button2 = CANCEL,
-	OnAccept = Reset,
-	timeout = 0,
-	whileDead = 1,
-	hideOnEscape = false,
-}
+
+if Tukui then
+	UI.Popups.Popup["CLASSMONITOR_RESET"] = {
+		Question = L.classmonitor_command_reset,
+		Answer1 = ACCEPT,
+		Answer2 = CANCEL,
+		Function1 = function(self)
+			Reset()
+		end,
+	}
+else
+	UI.PopupDialogs["CLASSMONITOR_RESET"] = {
+		text = L.classmonitor_command_reset,
+		button1 = ACCEPT,
+		button2 = CANCEL,
+		OnAccept = Reset,
+		timeout = 0,
+		whileDead = 1,
+		hideOnEscape = false,
+	}
+end
+
 local function SlashHandlerReset(args)
 	if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
-	StaticPopup_Show("CLASSMONITOR_RESET")
+--	if Tukui then
+--		UI.Popups.ShowPopup("CLASSMONITOR_RESET")
+--	else
+--		UI.StaticPopup_Show("CLASSMONITOR_RESET")
+--	end
+	UI.StaticPopup_Show("CLASSMONITOR_RESET")
 end
 
 SlashCmdList["CLASSMONITOR"] = function(cmd)
