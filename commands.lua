@@ -32,48 +32,9 @@ local function SlashHandlerConfig(args)
 	end
 end
 
-local function Reset()
-	-- delete data per char
-	for k, v in pairs(ClassMonitorDataPerChar) do
-		ClassMonitorDataPerChar[k] = nil
-	end
-	-- delete data per realm
-	for k, v in pairs(ClassMonitorData) do
-		ClassMonitorData[k] = nil
-	end
-	-- reload
-	ReloadUI()
-end
-
-if Tukui then
-	UI.Popups.Popup["CLASSMONITOR_RESET"] = {
-		Question = L.classmonitor_command_reset,
-		Answer1 = ACCEPT,
-		Answer2 = CANCEL,
-		Function1 = function(self)
-			Reset()
-		end,
-	}
-else
-	UI.PopupDialogs["CLASSMONITOR_RESET"] = {
-		text = L.classmonitor_command_reset,
-		button1 = ACCEPT,
-		button2 = CANCEL,
-		OnAccept = Reset,
-		timeout = 0,
-		whileDead = 1,
-		hideOnEscape = false,
-	}
-end
-
 local function SlashHandlerReset(args)
 	if InCombatLockdown() then print(ERR_NOT_IN_COMBAT) return end
---	if Tukui then
---		UI.Popups.ShowPopup("CLASSMONITOR_RESET")
---	else
---		UI.StaticPopup_Show("CLASSMONITOR_RESET")
---	end
-	UI.StaticPopup_Show("CLASSMONITOR_RESET")
+	UI.StaticPopup_Reset_show()
 end
 
 SlashCmdList["CLASSMONITOR"] = function(cmd)

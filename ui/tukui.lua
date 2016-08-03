@@ -35,8 +35,31 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	return fs
 end
 
-UI.Popups = T["Popups"]
-UI.StaticPopup_Show = UI.Popups.ShowPopup
+------ Reset popup
+local function Reset()
+	-- delete data per char
+	for k, v in pairs(ClassMonitorDataPerChar) do
+		ClassMonitorDataPerChar[k] = nil
+	end
+	-- delete data per realm
+	for k, v in pairs(ClassMonitorData) do
+		ClassMonitorData[k] = nil
+	end
+	-- reload
+	ReloadUI()
+end
+
+T["Popups"].Popup["CLASSMONITOR_RESET"] = {
+	Question = L.classmonitor_command_reset,
+	Answer1 = ACCEPT,
+	Answer2 = CANCEL,
+	Function1 = function(self)
+		Reset()
+	end,
+}
+
+UI.StaticPopup_Reset_show = function() T["Popups"].ShowPopup("CLASSMONITOR_RESET") end
+------
 
 UI.ClassColor = function(className)
 	return className and UI.Colors.class[className] or UI.Colors.class[UI.MyClass]

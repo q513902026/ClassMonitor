@@ -1,3 +1,8 @@
+* 3.5.0
+    1. Now Combo points color will change smoothly
+    1. Fix texture issue of Reset Popup
+    1. Add new method, empty point will still display his border(beta)
+
 * 3.4.6
 	1. fix HealthBar function 
 

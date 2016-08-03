@@ -34,8 +34,32 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	return fs
 end
 
-UI.PopupDialogs = E.PopupDialogs
-UI.StaticPopup_Show = E:StaticPopup_Show
+------Reset popup
+local function Reset()
+	-- delete data per char
+	for k, v in pairs(ClassMonitorDataPerChar) do
+		ClassMonitorDataPerChar[k] = nil
+	end
+	-- delete data per realm
+	for k, v in pairs(ClassMonitorData) do
+		ClassMonitorData[k] = nil
+	end
+	-- reload
+	ReloadUI()
+end
+
+E.PopupDialogs["CLASSMONITOR_RESET"] = {
+	text = L.classmonitor_command_reset,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = Reset,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
+UI.StaticPopup_Reset_show = function() E:StaticPopup_Show("CLASSMONITOR_RESET") end
+------
 
 -- local function ConvertColor(color)
 	-- return { color.r, color.g, color.b, color.a or 1 }

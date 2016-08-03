@@ -144,6 +144,29 @@ local ResourceColor = {
 local UnitTappedColor = {.6,.6,.6}
 local UnitDisconnectedColor = {.6, .6, .6}
 
+local function Reset()
+	-- delete data per char
+	for k, v in pairs(ClassMonitorDataPerChar) do
+		ClassMonitorDataPerChar[k] = nil
+	end
+	-- delete data per realm
+	for k, v in pairs(ClassMonitorData) do
+		ClassMonitorData[k] = nil
+	end
+	-- reload
+	ReloadUI()
+end
+
+StaticPopupDialogs["CLASSMONITOR_RESET"] = {
+	text = L.classmonitor_command_reset,
+	button1 = ACCEPT,
+	button2 = CANCEL,
+	OnAccept = Reset,
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = false,
+}
+
 --
 UI.BorderColor = bordercolor
 UI.PetBattleHider = petBattleHider
@@ -159,9 +182,6 @@ UI.SetFontString = function(parent, fontHeight, fontStyle)
 	fs:SetShadowOffset(1.25, -1.25)
 	return fs
 end
-
-UI.PopupDialogs = StaticPopupDialogs
-UI.StaticPopup_Show = StaticPopup_Show
 
 UI.ClassColor = function(className)
 	local class = className or UI.MyClass
@@ -250,3 +270,5 @@ UI.Move = function()
 	enable = not enable
 	return enable
 end
+
+UI.StaticPopup_Reset_show = function() StaticPopup_Show("CLASSMONITOR_RESET") end
