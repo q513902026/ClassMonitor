@@ -340,14 +340,14 @@ Engine.Config = {
 			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
 			kind = "POWER",
 			powerType = SPELL_POWER_SOUL_SHARDS,
-			count = 5,
+--			count = 5,
 			autohide = false,
 			anchor = { "BOTTOMLEFT", "CM_MANA", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
 			--spacing = 3,
 			--color = {148/255, 130/255, 201/255, 1},
-			filled = false,
+			filled = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
@@ -382,14 +382,12 @@ Engine.Config = {
 			width = 262,
 			height = 16,
 			-- spacing = 3,
-			-- colors = { 
-				-- {0.69, 0.31, 0.31, 1}, -- 1
-				-- {0.65, 0.42, 0.31, 1}, -- 2
-				-- {0.65, 0.63, 0.35, 1}, -- 3
-				-- {0.46, 0.63, 0.35, 1}, -- 4
-				-- {0.33, 0.63, 0.33, 1}, -- 5
-			-- },
+			 colors = {
+				 {0.69, 0.31, 0.31, 1}, -- 1
+				 {0.33, 0.63, 0.33, 1}, -- 2
+			 },
 			filled = true,
+--			borderRemind = true,
 			autohide = false,
 			verticalIndex = -1,
 			horizontalIndex = 0,
