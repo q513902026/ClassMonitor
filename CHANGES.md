@@ -1,3 +1,6 @@
+* 3.5.1
+    1. Add DH support
+
 * 3.5.0
     1. Now Combo points color will change smoothly
     1. Fix texture issue of Reset Popup
