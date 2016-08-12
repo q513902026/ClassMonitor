@@ -137,6 +137,7 @@ local ResourceColor = {
 	["RUNIC_POWER"] = {0, 0.82, 1},
 	["AMMOSLOT"] = {0.8, 0.6, 0},
 	["FUEL"] = {0, 0.55, 0.5},
+	["FURY"] = {0.78, 0.26, 0.99},
 	["POWER_TYPE_STEAM"] = {0.55, 0.57, 0.61},
 	["POWER_TYPE_PYRITE"] = {0.60, 0.09, 0.17}
 }

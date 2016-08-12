@@ -656,4 +656,27 @@ Engine.Config = {
 			horizontalIndex = 0,
 		},
 	},
+	['DEMONHUNTER'] = {
+		{
+			name = "CM_MOVER",
+			displayName = "Mover",
+			kind = "MOVER",
+			anchor = { "CENTER", UIParent, "CENTER", 0, -140 },
+			width = 262,
+			height = 16,
+			text = L.classmonitor_move
+		},
+		{
+			name = "CM_RESOURCE",
+			displayName = L.classmonitor_RESOURCEBAR,
+			kind = "RESOURCE",
+			text = true,
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_MOVER", "TOPLEFT", 0, 0 },
+			width = 262,
+			height = 16,
+			verticalIndex = 0,
+			horizontalIndex = 0,
+		},
+	},
 }
