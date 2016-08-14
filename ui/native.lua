@@ -12,10 +12,13 @@ Engine.Enabled = true
 ----------------------------------
 
 -- Credits to Tukz
-local backdropcolor = { .1,.1,.1 }
-local bordercolor = { .6,.6,.6 }
+--local backdropcolor = { .1,.1,.1 }
+local backdropcolor = {0,0,0}
+--local bordercolor = { .6,.6,.6 }
+local bordercolor = {0,0,0}
 local blank = [[Interface\AddOns\ClassMonitor\medias\textures\blank]]
 local normTex = [[Interface\AddOns\ClassMonitor\medias\textures\normTex]]
+local halback = [[Interface\AddOns\ClassMonitor\medias\textures\halBackground]]
 local ufFont = [=[Interface\Addons\ClassMonitor\medias\fonts\uf_font.ttf]=]
 
 local floor = math.floor
@@ -54,27 +57,52 @@ local function Point(obj, arg1, arg2, arg3, arg4, arg5)
 	obj:SetPoint(arg1, arg2, arg3, arg4, arg5)
 end
 
-local function SetTemplate(f, t, tex)
-	if tex then
-		texture = normTex
-	else
-		texture = blank
-	end
+--local function SetTemplate(f, t, tex)
+--	if tex then
+--		texture = normTex
+--	else
+--		texture = blank
+--	end
+--
+--	borderr, borderg, borderb = unpack(bordercolor)
+--	backdropr, backdropg, backdropb = unpack(backdropcolor)
+--
+--	f:SetBackdrop({
+--		bgFile = texture,
+--		edgeFile = blank,
+--		tile = false, tileSize = 0, edgeSize = mult,
+--		insets = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+--	})
+--
+--	if t == "Transparent" then backdropa = 0.8 else backdropa = 1 end
+--
+--	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
+--	f:SetBackdropBorderColor(borderr, borderg, borderb)
+--end
 
-	borderr, borderg, borderb = unpack(bordercolor)
-	backdropr, backdropg, backdropb = unpack(backdropcolor)
+local function SetTemplate(f)
+    --	if tex == "norm" then
+    --		texture = normTex
+    --    elseif tex == "glow" then
+    --        texture = halback
+    --	else
+    --		texture = blank
+    --	end
+    texture = halback
 
-	f:SetBackdrop({
-		bgFile = texture, 
-		edgeFile = blank, 
-		tile = false, tileSize = 0, edgeSize = mult, 
-		insets = {left = -mult, right = -mult, top = -mult, bottom = -mult}
-	})
+    borderr, borderg, borderb = unpack(bordercolor)
+    backdropr, backdropg, backdropb = unpack(backdropcolor)
 
-	if t == "Transparent" then backdropa = 0.8 else backdropa = 1 end
+    f:SetBackdrop({
+        bgFile = texture,
+        edgeFile = blank,
+        tile = false, tileSize = 0,
+        edgeSize = 3*mult,
+        insets = {left = 2*mult, right = 2*mult, top = 2*mult, bottom = 2*mult}
+    })
 
-	f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
-	f:SetBackdropBorderColor(borderr, borderg, borderb)
+    f:SetBackdropColor(backdropr, backdropg, backdropb, .6)
+    f:SetBackdropBorderColor(borderr, borderg, borderb, 1)
 end
 
 local function SetInside(obj, anchor, xOffset, yOffset)
