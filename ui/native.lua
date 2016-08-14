@@ -24,6 +24,8 @@ local ufFont = [=[Interface\Addons\ClassMonitor\medias\fonts\uf_font.ttf]=]
 local floor = math.floor
 local texture = blank
 local backdropr, backdropg, backdropb, backdropa, borderr, borderg, borderb = 0, 0, 0, 1, 0, 0, 0
+local edge_size
+local insets_size
 
 --local mult = 1
 local resolution = GetCVar("gxWindowedResolution")
@@ -80,15 +82,20 @@ end
 --	f:SetBackdropBorderColor(borderr, borderg, borderb)
 --end
 
-local function SetTemplate(f)
-    --	if tex == "norm" then
-    --		texture = normTex
-    --    elseif tex == "glow" then
-    --        texture = halback
-    --	else
-    --		texture = blank
-    --	end
-    texture = halback
+local function SetTemplate(f, t, tex)
+    if tex == "glow" then
+        texture = normTex
+        edge_size = 3*mult
+        insets_size = {left = 2*mult, right = 2*mult, top = 2*mult, bottom = 2*mult}
+    elseif tex == "norm" then
+        texture = halback
+        edge_size = mult
+        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+    else
+        texture = blank
+        edge_size = mult
+        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+    end
 
     borderr, borderg, borderb = unpack(bordercolor)
     backdropr, backdropg, backdropb = unpack(backdropcolor)
@@ -96,13 +103,16 @@ local function SetTemplate(f)
     f:SetBackdrop({
         bgFile = texture,
         edgeFile = blank,
-        tile = false, tileSize = 0,
-        edgeSize = 3*mult,
-        insets = {left = 2*mult, right = 2*mult, top = 2*mult, bottom = 2*mult}
+        tile = false,
+        tileSize = 0,
+        edgeSize = edge_size,
+        insets = insets_size,
     })
 
-    f:SetBackdropColor(backdropr, backdropg, backdropb, .6)
-    f:SetBackdropBorderColor(borderr, borderg, borderb, 1)
+    if t == "Transparent" then backdropa = 0.6 else backdropa = 1 end
+
+    f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
+    f:SetBackdropBorderColor(borderr, borderg, borderb)
 end
 
 local function SetInside(obj, anchor, xOffset, yOffset)
