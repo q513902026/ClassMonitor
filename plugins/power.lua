@@ -34,12 +34,21 @@ end
 
 function plugin:UpdateValue(event, unit, powerType)
 	local value = UnitPower("player", self.settings.powerType)
-	if value and value > 0 then
-		assert(value <= self.count, "Current value:"..tostring(value).." must be <= to count:"..tostring(self.count))
-		for i = 1, value do self.points[i]:Show() end
-		for i = value+1, self.count do self.points[i]:Hide() end
+	if self.settings.borderRemind == true then
+		if value and value > 0 then
+			for i = 1, value do self.points[i].status:Show() end
+			for i = value+1, self.count do self.points[i].status:Hide() end
+		else
+			for i = 1, self.count do self.points[i].status:Hide() end
+		end
 	else
-		for i = 1, self.count do self.points[i]:Hide() end
+		if value and value > 0 then
+	--		assert(value <= self.count, "Current value:"..tostring(value).." must be <= to count:"..tostring(self.count))
+			for i = 1, value do self.points[i]:Show() end
+			for i = value+1, self.count do self.points[i]:Hide() end
+		else
+			for i = 1, self.count do self.points[i]:Hide() end
+		end
 	end
 end
 
@@ -58,7 +67,8 @@ function plugin:UpdatePointGraphics(index, width, height, spacing)
 		point = CreateFrame("Frame", nil, self.frame)
 		point:SetTemplate()
 		point:SetFrameStrata("BACKGROUND")
-		point:Hide()
+--		point:Hide()
+		if not self.settings.borderRemind == true then point:Hide() end
 		self.points[index] = point
 	end
 	point:Size(width, height)
@@ -76,7 +86,7 @@ function plugin:UpdatePointGraphics(index, width, height, spacing)
 			point:Point("LEFT", self.points[index-1], "RIGHT", spacing, 0)
 		end
 	end
-	if self.settings.filled == true and not point.status then
+	if not point.status then
 		point.status = CreateFrame("StatusBar", nil, point)
 		point.status:SetStatusBarTexture(UI.NormTex)
 		point.status:SetFrameLevel(6)
@@ -86,11 +96,13 @@ function plugin:UpdatePointGraphics(index, width, height, spacing)
 	local color = GetColor(self.settings.colors, index, UI.ClassColor())
 	if self.settings.filled == true then
 		point.status:SetStatusBarColor(unpack(color))
-		point.status:Show()
 		point:SetBackdropBorderColor(unpack(UI.BorderColor))
+		point.status:Show()
 	else
+		point.status:SetStatusBarColor(0, 0, 0, 1)
 		point:SetBackdropBorderColor(unpack(color))
-		if point.status then point.status:Hide() end
+		point.status:Show()
+--		if point.status then point.status:Hide() end
 	end
 end
 

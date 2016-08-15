@@ -348,6 +348,7 @@ Engine.Config = {
 			--spacing = 3,
 			--color = {148/255, 130/255, 201/255, 1},
 			filled = true,
+--            borderRemind = true,
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
