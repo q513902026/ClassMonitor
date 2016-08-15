@@ -14,14 +14,15 @@ local plugin = Engine:NewPlugin("AURABAR")
 function plugin:Update(elapsed)
 	self.timeSinceLastUpdate = self.timeSinceLastUpdate + elapsed
 	if self.timeSinceLastUpdate > 0.2 then
-		if self.settings.duration == true then
 			local timeLeft = self.expirationTime - GetTime()
+		if self.settings.duration == true then
 			if timeLeft > 0 then
 				self.bar.durationText:SetText(ToClock(timeLeft))
 			else
 				self.bar.durationText:SetText("")
 			end
 		end
+		self.bar.status:SetValue(timeLeft)
 		self.timeSinceLastUpdate = 0
 	end
 end
@@ -35,13 +36,19 @@ function plugin:UpdateVisibilityAndValue(event)
 		inCombat = false
 	end
 	local visible = false
-	if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) then
-		local name, _, _, stack, _, _, expirationTime, unitCaster = UnitAura(self.settings.unit, self.auraName, nil, self.settings.filter)
-		if name == self.auraName and unitCaster == "player" and stack > 0 then
-			self.bar.status:SetValue(stack)
-			if self.settings.text == true then
-				self.bar.valueText:SetText(tostring(stack).."/"..tostring(self.settings.count))
+	if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) and self.auraName then
+--print(tostring(self.settings.spellID).."  "..tostring(self.settings.unit).."  "..tostring(self.auraName).."  "..tostring(self.settings.filter))
+		local name, _, _, stack, _, duration, expirationTime, unitCaster = UnitAura(self.settings.unit, self.auraName, nil, self.settings.filter)
+		if name == self.auraName and unitCaster == "player" then --and stack > 0 then
+			--self.bar.status:SetValue(stack)
+			if self.settings.text == true and stack and stack > 0 then
+				--self.bar.valueText:SetText(tostring(stack).."/"..tostring(self.settings.count))
+				self.bar.valueText:SetText(tostring(stack))
 			end
+			if self.settings.showspellname == true then
+				self.bar.spellText:SetText(name)
+			end
+			self.bar.status:SetMinMaxValues(0, duration or 1)
 			self.expirationTime = expirationTime -- save to use in Update
 			visible = true
 		end
@@ -57,6 +64,7 @@ function plugin:UpdateVisibilityAndValue(event)
 end
 
 function plugin:UpdateGraphics()
+--print("AURABAR:UpdateGraphics")
 	--
 	local bar = self.bar
 	if not bar then
@@ -77,7 +85,7 @@ function plugin:UpdateGraphics()
 		bar.status:SetInside()
 	end
 	bar.status:SetStatusBarColor(unpack(self.settings.color))
-	bar.status:SetMinMaxValues(0, self.settings.count)
+	--bar.status:SetMinMaxValues(0, self.settings.count)
 	--
 	if self.settings.text == true and not bar.valueText then
 		bar.valueText = UI.SetFontString(bar.status, 12)
@@ -90,17 +98,25 @@ function plugin:UpdateGraphics()
 		bar.durationText:Point("RIGHT", bar.status)
 	end
 	if bar.durationText then bar.durationText:SetText("") end
+	--
+	if self.settings.showspellname == true and not bar.spellText then
+		bar.spellText = UI.SetFontString(bar.status, 12)
+		bar.spellText:Point("LEFT", bar.status)
+	end
+	if bar.spellText then bar.spellText:SetText("") end
 end
 
 -- overridden methods
 function plugin:Initialize()
+--print("AURABAR:Initialize")
 	-- set defaults
 	self.settings.unit = self.settings.unit or "player"
 	self.settings.color = self.settings.color or UI.ClassColor()
 	self.settings.text = DefaultBoolean(self.settings.text, true)
 	self.settings.duration = DefaultBoolean(self.settings.duration, false)
 	self.settings.filter = self.settings.filter or "HELPFUL"
-	self.settings.count = self.settings.count or 1
+	--self.settings.count = self.settings.count or 1
+	self.settings.showspellname = DefaultBoolean(self.settings.showspellname, true)
 	--
 	self.auraName = GetSpellInfo(self.settings.spellID)
 	--
@@ -108,6 +124,7 @@ function plugin:Initialize()
 end
 
 function plugin:Enable()
+--print("AURABAR:Enable")
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", plugin.UpdateVisibilityAndValue)
 	self:RegisterEvent("PLAYER_REGEN_DISABLED", plugin.UpdateVisibilityAndValue)
 	self:RegisterEvent("PLAYER_REGEN_ENABLED", plugin.UpdateVisibilityAndValue)
@@ -119,6 +136,7 @@ function plugin:Enable()
 end
 
 function plugin:Disable()
+--print("AURABAR:Disable")
 	self:UnregisterAllEvents()
 	self:UnregisterUpdate()
 
@@ -126,6 +144,7 @@ function plugin:Disable()
 end
 
 function plugin:SettingsModified()
+--print("AURABAR:SettingsModified")
 	--
 	self:Disable()
 	--
