@@ -1,3 +1,6 @@
+* 3.5.3
+    1. Add borderRemind feature
+
 * 3.5.2
     1. UI.Border added (sometimes useful when we cannot use :SetInside)
     2. Rare issue fixed with RegisterAddonMessagePrefix
