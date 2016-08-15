@@ -1,3 +1,12 @@
+* 3.5.2
+    1. UI.Border added (sometimes useful when we cannot use :SetInside)
+    2. Rare issue fixed with RegisterAddonMessagePrefix
+    3. Bug fix with outdated message in BG
+    4. Bug fixed in ENERGIZE plugin, duration was always reset to 10 :/ (thanks Nize)
+    5. Embeds.xml CRLF fixed
+    6. AURA and POWER can be displayed from right to left or left to right (reverse option)
+    7.Config: AURABAR missing Filter config option added
+
 * 3.5.1
     1. Add DH support
 
