@@ -590,6 +590,19 @@ Engine.Config = {
 			verticalIndex = 0,
 			horizontalIndex = 0,
 		},
+		{
+			name = "CM_TOTEM",
+			displayName = L.classmonitor_SHAMAN_TOTEMS,
+			kind = "TOTEMS",
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			--spacing = 3,
+			count = 4,
+			specs = {4},
+			text = true,
+		},
 	},
 	["MONK"] = {
 		{
