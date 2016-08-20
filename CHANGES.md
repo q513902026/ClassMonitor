@@ -1,3 +1,6 @@
+*3.5.4
+    1. Now warlock can use totems plugin
+
 * 3.5.3
     1. Add borderRemind feature
 
