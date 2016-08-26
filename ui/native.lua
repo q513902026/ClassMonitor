@@ -12,13 +12,12 @@ Engine.Enabled = true
 ----------------------------------
 
 -- Credits to Tukz
---local backdropcolor = { .1,.1,.1 }
-local backdropcolor = {0,0,0}
---local bordercolor = { .6,.6,.6 }
-local bordercolor = {0,0,0}
+local backdropcolor = { .1,.1,.1 }
+local bordercolor = { .6,.6,.6 }
+--local bordercolor = { 0, 0, 0 }
 local blank = [[Interface\AddOns\ClassMonitor\medias\textures\blank]]
 local normTex = [[Interface\AddOns\ClassMonitor\medias\textures\normTex]]
-local halback = [[Interface\AddOns\ClassMonitor\medias\textures\halBackground]]
+local glowTex = [[Interface\AddOns\ClassMonitor\medias\textures\glowTex]]
 local ufFont = [=[Interface\Addons\ClassMonitor\medias\fonts\uf_font.ttf]=]
 
 local floor = math.floor
@@ -82,38 +81,89 @@ end
 --	f:SetBackdropBorderColor(borderr, borderg, borderb)
 --end
 
-local function SetTemplate(f, t, tex)
-    if tex == "glow" then
-        texture = normTex
-        edge_size = 3*mult
-        insets_size = {left = 2*mult, right = 2*mult, top = 2*mult, bottom = 2*mult}
-    elseif tex == "norm" then
-        texture = halback
-        edge_size = mult
-        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+--local function SetTemplate(f, t, tex)
+--    if tex == "glow" then
+--        texture = normTex
+--        edge_size = 3*mult
+--        insets_size = {left = 2*mult, right = 2*mult, top = 2*mult, bottom = 2*mult}
+--    elseif tex == "norm" then
+--        texture = halback
+--        edge_size = mult
+--        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+--    else
+--        texture = blank
+--        edge_size = mult
+--        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+--    end
+--
+--    borderr, borderg, borderb = unpack(bordercolor)
+--    backdropr, backdropg, backdropb = unpack(backdropcolor)
+--
+--    f:SetBackdrop({
+--        bgFile = texture,
+--        edgeFile = blank,
+--        tile = false,
+--        tileSize = 0,
+--        edgeSize = edge_size,
+--        insets = insets_size,
+--    })
+--
+--    if t == "Transparent" then backdropa = 0.6 else backdropa = 1 end
+--
+--    f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
+--    f:SetBackdropBorderColor(borderr, borderg, borderb)
+--end
+
+
+local function SetTemplate(f, tex)
+    if tex ~= "glow" then
+        if f.sd then return end
+        f.sd = CreateFrame("Frame", nil, f)
+        f.sd:SetFrameLevel(1)
+        f.sd:SetBackdrop({
+            bgFile = blank,
+            edgeFile = glowTex,
+            tile = 0,
+            tileSize = 4,
+            edgeSize = 4*mult,
+            insets = { left = 4*mult, right = 4*mult, top = 4*mult, bottom = 4*mult }
+        })
+        f.sd:SetPoint("TOPLEFT", f, -2, 2)
+        f.sd:SetPoint("BOTTOMRIGHT", f, 2, -2)
+        f.sd:SetBackdropColor(unpack(backdropcolor))
+        f.sd:SetBackdropBorderColor( 0, 0, 0 )
     else
-        texture = blank
-        edge_size = mult
-        insets_size = {left = -mult, right = -mult, top = -mult, bottom = -mult}
+        f:SetBackdrop({
+            bgFile = blank,
+            edgeFile = blank,
+            tile = false,
+            tileSize = 0,
+            edgeSize = mult,
+            insets = {left = -mult, right = -mult, top = -mult, bottom = -mult},
+        })
+
+        f:SetBackdropColor(unpack(backdropcolor))
+        f:SetBackdropBorderColor(unpack(bordercolor))
     end
-
-    borderr, borderg, borderb = unpack(bordercolor)
-    backdropr, backdropg, backdropb = unpack(backdropcolor)
-
-    f:SetBackdrop({
-        bgFile = texture,
-        edgeFile = blank,
-        tile = false,
-        tileSize = 0,
-        edgeSize = edge_size,
-        insets = insets_size,
-    })
-
-    if t == "Transparent" then backdropa = 0.6 else backdropa = 1 end
-
-    f:SetBackdropColor(backdropr, backdropg, backdropb, backdropa)
-    f:SetBackdropBorderColor(borderr, borderg, borderb)
 end
+
+--local function SetTemplate(f, t, tex)
+--    if f.sd then return end
+--    f.sd = CreateFrame("Frame", nil, f)
+--    f.sd:SetFrameLevel(1)
+--    f.sd:SetBackdrop({
+--        bgFile = blank,
+--        edgeFile = glowTex,
+--        tile = 0,
+--        tileSize = 4,
+--        edgeSize = 4*mult,
+--        insets = { left = 4*mult, right = 4*mult, top = 4*mult, bottom = 4*mult }
+--    })
+--    f.sd:SetPoint("TOPLEFT", f, -2, 2)
+--    f.sd:SetPoint("BOTTOMRIGHT", f, 2, -2)
+--    f.sd:SetBackdropColor(unpack(backdropcolor))
+--    f.sd:SetBackdropBorderColor( 0, 0, 0 )
+--end
 
 local function SetInside(obj, anchor, xOffset, yOffset)
 	xOffset = xOffset or 2
