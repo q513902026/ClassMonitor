@@ -654,6 +654,7 @@ Engine.Config = {
 			kind = "STAGGER",
 			specs = {1},
 			text = true,
+			textSize = 12,
 			autohide = false,
 			threshold = 20,
 			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
