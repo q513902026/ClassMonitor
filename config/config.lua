@@ -264,6 +264,19 @@ Engine.Config = {
 			verticalIndex = -1,
 			horizontalIndex = 0,
 		},
+		{
+			name = "CM_TOTEM",
+			displayName = L.classmonitor_SHAMAN_TOTEMS,
+			kind = "TOTEMS",
+			autohide = false,
+			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
+			width = 262,
+			height = 16,
+			--spacing = 3,
+			count = 1,
+			specs = {4},
+			text = true,
+		},
 	},
 	["PALADIN"] = {
 		{
@@ -654,6 +667,7 @@ Engine.Config = {
 			kind = "STAGGER",
 			specs = {1},
 			text = true,
+			textSize = 12,
 			autohide = false,
 			threshold = 20,
 			anchor = { "TOPLEFT", "CM_RESOURCE", "BOTTOMLEFT", 0, -3 },
