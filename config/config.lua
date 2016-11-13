@@ -336,7 +336,7 @@ Engine.Config = {
 		},
 		{
 			name = "CM_SOUL_SHARD",
-			displayName = L.classmonitor_WARLOCK_REAPSOULS,
+			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
 			kind = "POWER",
 			powerType = SPELL_POWER_SOUL_SHARDS,
 --			count = 5,
