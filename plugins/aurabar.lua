@@ -14,7 +14,7 @@ local plugin = Engine:NewPlugin("AURABAR")
 function plugin:Update(elapsed)
 	self.timeSinceLastUpdate = self.timeSinceLastUpdate + elapsed
 	if self.timeSinceLastUpdate > 0.2 then
-			local timeLeft = self.expirationTime - GetTime()
+        local timeLeft = self.expirationTime - GetTime()
 		if self.settings.duration == true then
 			if timeLeft > 0 then
 				self.bar.durationText:SetText(ToClock(timeLeft))
@@ -36,29 +36,39 @@ function plugin:UpdateVisibilityAndValue(event)
 		inCombat = false
 	end
 	local visible = false
-	if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) and self.auraName then
---print(tostring(self.settings.spellID).."  "..tostring(self.settings.unit).."  "..tostring(self.auraName).."  "..tostring(self.settings.filter))
+    local needUpdate = false
+	if (self.settings.autohide == false or inCombat) and CheckSpec(self.settings.specs) then
 		local name, _, _, stack, _, duration, expirationTime, unitCaster = UnitAura(self.settings.unit, self.auraName, nil, self.settings.filter)
+        if self.settings.countFromOther == true then
+            _, _, _, stack = UnitAura(self.settings.unit, self.countAuraName, nil, self.settings.filter)
+        end
+        if not stack then stack = 0 end
+        if self.settings.text == true then
+            self.bar.valueText:SetText(tostring(stack).."/"..tostring(self.settings.count))
+        end
 		if name == self.auraName and unitCaster == "player" then --and stack > 0 then
-			--self.bar.status:SetValue(stack)
-			if self.settings.text == true and stack and stack > 0 then
-				--self.bar.valueText:SetText(tostring(stack).."/"..tostring(self.settings.count))
-				self.bar.valueText:SetText(tostring(stack))
-			end
+            self.bar.status:Show()
 			if self.settings.showspellname == true then
 				self.bar.spellText:SetText(name)
 			end
 			self.bar.status:SetMinMaxValues(0, duration or 1)
 			self.expirationTime = expirationTime -- save to use in Update
-			visible = true
+            needUpdate = true
+        else
+            self.bar.status:Hide()
 		end
+        visible = true
 	end
 	if visible then
 		self.bar:Show()
+--        self:UpdateValue()
+	else
+		self.bar:Hide()
+	end
+    if needUpdate then
 		self.timeSinceLastUpdate = GetTime()
 		self:RegisterUpdate(plugin.Update)
 	else
-		self.bar:Hide()
 		self:UnregisterUpdate()
 	end
 end
@@ -81,18 +91,20 @@ function plugin:UpdateGraphics()
 	if not bar.status then
 		bar.status = CreateFrame("StatusBar", nil, bar)
 		bar.status:SetStatusBarTexture(UI.NormTex)
-		bar.status:SetFrameLevel(6)
+		bar.status:SetFrameLevel(5)
 		bar.status:SetInside()
-	end
+		bar.status:Hide()
+    end
+    --
 	bar.status:SetStatusBarColor(unpack(self.settings.color))
-	--bar.status:SetMinMaxValues(0, self.settings.count)
-	--
+--	bar.status:SetMinMaxValues(0, self.settings.count)
 	if self.settings.text == true and not bar.valueText then
-		bar.valueText = UI.SetFontString(bar.status, 12)
-		bar.valueText:Point("CENTER", bar.status)
-	end
-	if bar.valueText then bar.valueText:SetText("") end
-	--
+        bar.textBar = CreateFrame("Frame", nil, bar)
+		bar.textBar:SetFrameLevel(6)
+		bar.valueText = UI.SetFontString(bar.textBar, 12)
+		bar.valueText:Point("CENTER", bar)
+    end
+    --
 	if self.settings.duration == true and not bar.durationText then
 		bar.durationText = UI.SetFontString(bar.status, 12)
 		bar.durationText:Point("RIGHT", bar.status)
@@ -115,10 +127,13 @@ function plugin:Initialize()
 	self.settings.text = DefaultBoolean(self.settings.text, true)
 	self.settings.duration = DefaultBoolean(self.settings.duration, false)
 	self.settings.filter = self.settings.filter or "HELPFUL"
-	--self.settings.count = self.settings.count or 1
+	self.settings.count = self.settings.count or 1
+	self.settings.countFromOther = self.settings.countFromOther or false
+	self.settings.countSpellID = self.settings.countSpellID or self.settings.spellID
 	self.settings.showspellname = DefaultBoolean(self.settings.showspellname, true)
 	--
 	self.auraName = GetSpellInfo(self.settings.spellID)
+	self.countAuraName = GetSpellInfo(self.settings.countSpellID)
 	--
 	self:UpdateGraphics()
 end
