@@ -352,8 +352,8 @@ Engine.Config = {
 			horizontalIndex = 0,
 		},
 		{
-			name = "CM_CM_REAP_SOULS",
-			displayName = L.classmonitor_WARLOCK_SOULSHARDS,
+			name = "CM_REAP_SOULS",
+			displayName = L.classmonitor_WARLOCK_REAPSOULS,
 			kind = "AURABAR",
 			autohide = true,
 			showspellname = false,
