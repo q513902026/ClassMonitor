@@ -1,4 +1,12 @@
-*3.5.4
+* 3.5.6
+    1. Update AuraBar
+    2. Add Reap Souls AuraBar as default of Warlock
+
+* 3.5.5
+    1. Update version
+    2. Now can config stagger bar test size
+
+* 3.5.4
     1. Now warlock can use totems plugin
 
 * 3.5.3
