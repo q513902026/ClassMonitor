@@ -502,11 +502,13 @@ Engine.Config = {
 			displayName = L.classmonitor_DEATHKNIGHT_RUNES,
 			kind = "RUNES",
 			updatethreshold = 0.1,
-			autohide = true,
+			autohide = false,
 			orientation = "HORIZONTAL",
 			anchor = { "BOTTOMLEFT", "CM_RUNIC_POWER", "TOPLEFT", 0, 3 },
 			width = 262,
 			height = 16,
+			duration = true,
+			durationTextSize = 12,
 			--spacing = 3,
 			-- colors = {
 				-- { 0.69, 0.31, 0.31, 1 }, -- Blood
