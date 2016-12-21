@@ -1,3 +1,6 @@
+* 3.5.7
+    1. Update Rune
+    
 * 3.5.6
     1. Update AuraBar
     2. Add Reap Souls AuraBar as default of Warlock
