@@ -54,6 +54,7 @@ end
 
 function plugin:SetCounts()
 	local maxValue = UnitPowerMax("player", self.settings.powerType)
+	print(maxValue)
 	if maxValue and maxValue ~= self.maxValue then
 		self.count = maxValue
 
@@ -130,7 +131,6 @@ end
 -- overridden methods
 function plugin:Initialize()
 	-- set defaults
-	self.settings.count = self.settings.count or 1 -- starts with count = 1 if count not found in settings
 	self.settings.filled = DefaultBoolean(self.settings.filled, false)
 	self.settings.powerType = self.settings.powerType or SPELL_POWER_HOLY_POWER --
 	self.settings.colors = self.settings.colors or self.settings.color or UI.PowerColor(self.settings.powerType) or UI.ClassColor()
@@ -145,8 +145,7 @@ function plugin:Enable()
 	self:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player", plugin.UpdateVisibility)
 
 	self:RegisterUnitEvent("UNIT_POWER", "player", plugin.UpdateValue)
-	self:RegisterEvent("UNIT_MAXPOWER", plugin.SetCounts)
-	self:RegisterUnitEvent("UNIT_MAXPOWER", "player", plugin.UpdateValue)
+	self:RegisterUnitEvent("UNIT_MAXPOWER", "player", plugin.SetCounts)
 end
 
 function plugin:Disable()
