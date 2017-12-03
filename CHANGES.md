@@ -1,3 +1,6 @@
+* 3.6.1
+    1. Fix colors argument error for POWER plugin
+
 * 3.6.0
     1. Add destruction warlock soul shard support
 

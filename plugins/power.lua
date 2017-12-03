@@ -33,7 +33,7 @@ end
 
 function plugin:UpdateValue(event, unit, powerType)
 	local value = UnitPower("player", self.settings.powerType)
---	print(value)
+--	print("Now: "..value)
 	if self.settings.borderRemind == true then
 		if value and value > 0 then
 			for i = 1, value do self.points[i].status:Show() end
@@ -54,7 +54,7 @@ end
 
 function plugin:SetCounts()
 	local maxValue = UnitPowerMax("player", self.settings.powerType)
---	print(maxValue)
+--	print("Max: "..maxValue)
 	if maxValue and maxValue ~= self.maxValue then
 		self.count = maxValue
 
@@ -122,10 +122,23 @@ function plugin:UpdateGraphics()
 	frame:Size(frameWidth, height)
 	-- Create points
 	local width, spacing = PixelPerfect(frameWidth, self.count)
+--	print(width, spacing)
 	self.points = self.points or {}
 	for i = 1, self.count do
 		self:UpdatePointGraphics(i, width, height, spacing)
 	end
+--	print(self.old_count)
+--	if self.old_count == nil  then
+--		self.old_count = self.count
+--	end
+--	print(self.old_count)
+--	if self.count < self.old_count then
+--		for i = self.count, self.old_count do
+--			print(i)
+--			local point = self.points[index]
+--			point:Hide()
+--		end
+--	end
 end
 
 -- overridden methods
